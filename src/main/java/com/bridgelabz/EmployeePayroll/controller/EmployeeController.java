@@ -1,6 +1,7 @@
 package com.bridgelabz.EmployeePayroll.controller;
 
 import com.bridgelabz.EmployeePayroll.dto.EmployeeDTO;
+import com.bridgelabz.EmployeePayroll.dto.ResponseDTO;
 import com.bridgelabz.EmployeePayroll.model.EmployeeData;
 import com.bridgelabz.EmployeePayroll.services.IEmployeeServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,9 @@ public class EmployeeController {
     private IEmployeeServices iEmployeeServices;
 
     @PostMapping("/add")
-    public EmployeeData addEmployee(@RequestBody EmployeeDTO employeeDTO) {
+    public ResponseDTO addEmployee(@RequestBody EmployeeDTO employeeDTO) {
         EmployeeData empData = iEmployeeServices.addEmployee(employeeDTO);
-        return empData;
+        ResponseDTO responseDTO = new ResponseDTO("Data added successfully ", empData);
+        return responseDTO;
     }
 }
